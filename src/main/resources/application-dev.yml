@@ -1,0 +1,29 @@
+#端口设置
+server:
+  port: 8099
+
+
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      ddl-auto: update  # 第一次简表create  后面用update
+    show-sql: true
+
+
+
+#读写分离配置
+mysql:
+  datasource:
+    readSize: 1  #读库个数
+    type: com.alibaba.druid.pool.DruidDataSource
+    write:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.1.114:3306/jpatest?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+      username: admin
+      password: admin1234
+    read:
+      url: jdbc:mysql://192.168.1.138:3306/jpatest?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=true
+      username: admin
+      password: Bt12345678
+      driver-class-name: com.mysql.jdbc.Driver
